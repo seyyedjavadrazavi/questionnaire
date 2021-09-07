@@ -1,0 +1,83 @@
+﻿@model Question.DataLayer.DTO.UserQuestions.SubmitExamDTO
+@using Question.DataLayer.Entities;
+@{
+	ViewData["Title"] = "نظر سنجی سوالات";
+	Layout = "/views/shared/_Layout.cshtml";
+	List<QuestionEntity> questions = ViewBag.Questions as List<QuestionEntity>;
+	int i = 1;
+}
+
+
+<div class="my-3">
+	<h2 class="text-center">ارزیابی سوالات تخصصی کامپیوتر و برنامه نویسی</h2>
+	<p class="text-center my-4">سوالات را با توجه به شفاف بودن آن ها و میزان تخصص خود در پاسخ به آن ها ارزیابی کنید</p>
+	<hr>
+</div>
+
+<form asp-controller="Home" asp-action="StartSurvey" method="post">
+	<div class="row my-3">
+		@foreach (var item in questions)
+		{
+			<div class="col-12 my-2">
+				<div class="card">
+					<div class="card-header">
+						<h3>
+							<span>@i -</span>
+							@item.Title
+						</h3>
+					</div>
+					<div class="card-body">
+						<div class="card-body-top">
+							<p>@item.Body</p>
+						</div>
+						<div class="card-body-bottom">
+							@foreach (string word in item.Tags.Trim().Split("-", StringSplitOptions.RemoveEmptyEntries))
+							{
+								<a class="question-tag">@word</a>
+							}
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-lg-6 col-sm-12">
+								<b>میزان شفافیت سوال را مشخص کنید</b>
+								<select asp-for="Answers.FirstOrDefault().Clarity" asp-items="@(Html.GetEnumSelectList<Clarity>())">
+									<option value="0">پاسخ</option>
+								</select>
+							</div>
+							<div class="col-lg-6 col-sm-12">
+								<b>میزان تخصص خود را در پاسخ به این سوال مشخص کنید</b>
+								<select asp-for="Answers.FirstOrDefault().ExtentOfExpertise" asp-items="@(Html.GetEnumSelectList<ExtentOfExpertise>())">
+									<option value="0">پاسخ</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input asp-for="Answers.SingleOrDefault().QuestionId" type="hidden" value="@item.Id" />
+			i++;
+		}
+	</div>
+
+	<div class="row my-3 user-form">
+		<div class="col-lg-6 col-sm-12">
+			<div class="mb-3">
+				<label class="form-label">نام و نام خانوادگی</label>
+				<input asp-for="Register.FullName" type="text" class="form-control">
+			</div>
+		</div>
+		<div class="col-lg-6 col-sm-12">
+			<div class="mb-3">
+				<label class="form-label">کد ملی ( ده رقمی )</label>
+				<input asp-for="Register.CodeMelli" type="text" class="form-control">
+			</div>
+		</div>
+	</div>
+
+	<div class="row my-3">
+		<div class="col-12">
+			<input type="submit" class="btn btn-success" value="ثبت پاسخ ها">
+		</div>
+	</div>
+</form>

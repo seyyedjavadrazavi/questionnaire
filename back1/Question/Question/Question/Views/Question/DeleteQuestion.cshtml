@@ -1,0 +1,12 @@
+﻿@{
+	ViewData["Title"] = "حذف سوال";
+	Layout = "/views/shared/_Layout.cshtml";
+}
+
+<h5 class="alert alert-danger my-5">آیا از حذف سوال اطمینان دارید؟</h5>
+
+<form asp-controller="Question" asp-action="DeleteQuestion" method="post">
+	<input type="submit" value="حذف شود" class="btn btn-danger"/>
+</form>
+
+

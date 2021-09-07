@@ -1,0 +1,33 @@
+﻿@model Question.DataLayer.Entities.QuestionEntity
+@{
+	ViewData["Title"] = "ویرایش سوال";
+	Layout = "/views/shared/_Layout.cshtml";
+}
+
+<h5 class="text-center my-4">ویرایش سوال</h5>
+<div class="row">
+	<div class="col-lg-6 col-12 mx-auto">
+		<form asp-controller="Question" asp-action="EditQuestion" method="post">
+			<input type="hidden" asp-for="Id"/>
+			<div class="mb-3">
+				<label class="form-label"><b>عنوان سوال</b></label>
+				<input asp-for="Title" type="text" class="form-control">
+				<span class="text-danger" asp-validation-for="Title"></span>
+			</div>
+			<div class="mb-3">
+				<label class="form-label"><b>شرح سوال</b></label>
+				<textarea asp-for="Body" rows="8" class="form-control"></textarea>
+				<span class="text-danger" asp-validation-for="Body"></span>
+			</div>
+			<div class="mb-3">
+				<label class="form-label"><b>گروه های سوال</b></label>
+				<p class="text-secondary">گروه های سوال را با - از هم جدا کنید</p>
+				<textarea asp-for="Tags" rows="3" class="form-control"></textarea>
+				<span class="text-danger" asp-validation-for="Tags"></span>
+			</div>
+			<div class="mb-3">
+				<input type="submit" value="ویرایش شود" class="btn btn-warning">
+			</div>
+		</form>
+	</div>
+</div>

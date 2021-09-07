@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face{
+    font-family: Iran;
+    src: url(IRANSans.ttf);
+}
+
+body{
+    font-family: Iran;
+}
+.card{
+    border: 1px solid #bbb;
+}
+.card-header h3{
+    font-size: 16px;
+    margin: 0;
+}
+.card-body-top p{
+    font-size: 15px;
+}
+.question-tag{
+    padding: 5px;
+    background-color: #444;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    text-align: center;
+    margin: 0 3px;
+    display: inline-block;
+    cursor: pointer;
+}
+.question-tag:hover{
+    color: #fff;
+}
+.card-footer{
+    background-color: rgba(31, 109, 145, 0.123);
+}
+.card-footer b{
+    display: block;
+    margin: 8px 0;
+}
+.card-footer select{
+    width: 50%;
+}
+.user-form{
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 3px;
+    background-color: rgb(232, 233, 153);
+}
+.form-control:focus{
+    box-shadow: none;
+    border: 1px solid #444;
+}

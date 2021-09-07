@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Question.DataLayer.Entities.QuestionEntity>
+@{
+	ViewData["Title"] = "فهرست سوالات";
+	Layout = "/views/shared/_Layout.cshtml";
+}
+
+<h5 class="text-center my-4">فهرست سوالات</h5>
+<a href="/create-question" class="btn btn-sm btn-outline-success my-2">سوال جدید</a>
+<div class="row">
+	<div class="col-12">
+		<table class="table text-center table-bordered">
+			<thead>
+				<tr>
+					<th>عنوان سوال</th>
+					<th>عملیات</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Title</td>
+						<td>
+							<a href="/delete-question/@item.Id" class="btn btn-sm btn-danger">حذف</a>
+							<a href="/edit-question/@item.Id" class="btn btn-sm btn-warning">ویرایش</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
